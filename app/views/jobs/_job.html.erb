@@ -1,0 +1,85 @@
+<div class="seejob" id="<%= dom_id job %>">
+
+<table>
+<thead>
+<tr>
+<th colspan=2>
+<h1><%=job.title%></h1>
+<span class="backoffers">
+<%=link_to "← Retour aux offres", jobs_path%>
+</span>
+</th>
+</tr>
+
+<tr>
+<th colspan=2>
+<%=job.company.try(:name)%> - <%=job.city.try(:name)%>
+</th>
+</tr>
+</thead>
+<tbody>
+  <tr>
+  <td>
+    <strong>Contrat:</strong>
+  </td>
+  <td>
+    <%= job.contrat_id %>
+
+  </td>
+  </tr>
+  <tr>
+  <td>
+    <strong>Salaire:</strong>
+  </td>
+  <td>
+    <%= job.salaire %>
+  </td>
+  </tr>
+
+
+  <tr>
+  <td>
+    <strong>Publié le:</strong>
+  </td>
+  <td>
+    <%= l(job.created_at.to_date, format: :longue) %>
+  </td>
+  </tr>
+  <tr>
+  <td>
+    <strong>Source:</strong>
+  </td>
+  <td>
+    <%= job.source %>
+  </td>
+  </tr>
+
+  <tr>
+  <td>
+    <strong>Description:</strong>
+  </td>
+  <td>
+    <%= job.description %>
+  </td>
+  </tr>
+
+
+
+
+
+
+
+  <tr class="postuler">
+  <td colspan="2">
+<a class="btn btn-success postuleroffre" href="<%= job.apply_link %>" target="_blank" >Postuler maintenant</button>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+
+
+
+
+
+
+</div>

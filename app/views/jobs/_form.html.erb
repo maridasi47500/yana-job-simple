@@ -1,0 +1,58 @@
+<%= form_with(model: job) do |form| %>
+  <% if job.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
+
+      <ul>
+        <% job.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :city_id, style: "display: block" %>
+    <%= form.select :city_id, City.all.collect {|h|[h.name, h.id]} %>
+  </div>
+
+  <div>
+    <%= form.label :company_id, style: "display: block" %>
+    <%#= form.select :company_id, Company.all.collect {|h|[h.name, h.id]} %>
+    <%= form.text_field :mycompany, value: job.company.try(:name) %>
+  </div>
+
+  <div>
+    <%= form.label :salaire, style: "display: block" %>
+    <%= form.text_field :salaire %>
+  </div>
+
+  <div>
+    <%= form.label :contrat_id, style: "display: block" %>
+    <%= form.select :contrat_id, Contrat.all.collect {|j|[j.name, j.id]} %>
+  </div>
+
+  <div>
+    <%= form.label :apply_link, style: "display: block" %>
+    <%= form.text_field :apply_link %>
+  </div>
+
+  <div>
+    <%= form.label :source, style: "display: block" %>
+    <%= form.text_field :source %>
+  </div>
+
+  <div>
+    <%= form.submit "enregistrer", class:"btn btn-success" %>
+  </div>
+<% end %>
